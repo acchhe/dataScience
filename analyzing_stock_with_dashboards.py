@@ -5,12 +5,19 @@ from bs4 import BeautifulSoup
 import matplotlib.pyplot as plt
 
 
-# Funktionen är redan given i uppgiften
-def make_graph(stock_data, revenue_data, stock):
-    stock_data_specific = stock_data[stock_data.Date <= '2021-06-14']
+# Syftet med funktionen är att rita och visualisera två grafer. En för aktiepris och en som visualiserar omsättning.
+def make_graph(stock_data, revenue_data, stock): # fuktionen tar som parameter (stock_data) en DataFrame med aktiedata, till exempel datum och stängningspris. revenue_data → en DataFrame med omsättningsdata.stock → ett textvärde, till exempel "Tesla" eller "GameStop"
+   
+    stock_data_specific = stock_data[stock_data.Date <= '2021-06-14'] 
     revenue_data_specific = revenue_data[revenue_data.Date <= '2021-04-30']
+    stock_data.Date <= '2021-06-14' 
+    
+#jämför varje rad i kolumnen Date
+#bara de rader där datumet är mindre än eller lika med 2021-06-14 behålls
+#resultatet blir en filtrerad version av stock_data
 
     fig, axes = plt.subplots(2, 1, figsize=(12, 8), sharex=True)
+    #Den här raden skapar själva ritområdet för graferna med hjälp av Matplotlib.
 
     # Aktiepris
     axes[0].plot(pd.to_datetime(stock_data_specific.Date),
